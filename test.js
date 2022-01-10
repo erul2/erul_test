@@ -21,6 +21,7 @@ const calculate = (cost, coin, transaction) => {
   change = total - transaction - totalCost;
 
   console.log(`
+  ======================================
     Coin Yang Dimiliki: [${coin}]
     Total Transaksi: ${transaction}
 
@@ -28,48 +29,39 @@ const calculate = (cost, coin, transaction) => {
     Biaya: ${totalCost}
 
     Kembalian: ${change}
+  ======================================
+
 
     `);
 };
 
-const readline = require("readline");
+const readline = require("readline-sync");
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+let coin = readline.question(
+  `Input Coin (dipisah dengan koma): 
+default ${sampleCoin} \n`,
+  {
+    defaultInput: sampleCoin,
+  }
+);
+coin = coin.split(",").map((item) => parseInt(item));
 
-const question = (theQuestion, sample) => {
-  return new Promise((resolve) => {
-    rl.question(theQuestion, (answer) => resolve(answer || sample));
-    rl.write(sample);
-  });
-};
+let transaction = readline.question(
+  `Total Transaksi: 
+default ${sampleTransaction} \n`,
+  {
+    defaultInput: sampleTransaction,
+  }
+);
+transaction = parseFloat(transaction);
 
-async function getInput() {
-  let coin = await question(
-    "Input Coin (dipisah dengan koma): ",
-    sampleCoin.toString()
-  );
+let cost = readline.question(
+  `Biaya (per koin): 
+default ${sampleCost} \n`,
+  {
+    defaultInput: sampleCost,
+  }
+);
+cost = parseFloat(cost);
 
-  coin = coin.split(",").map((item) => parseInt(item));
-
-  let transaction = await question(
-    "Total Transaksi: ",
-    sampleTransaction.toString()
-  );
-  transaction = parseInt(transaction);
-
-  let cost = await question(
-    "Biaya Transaksi per coin: ",
-    sampleCost.toString()
-  );
-  cost = parseFloat(cost);
-
-  calculate(cost, coin, transaction);
-
-  await question("Press Enter to exit...");
-  process.exit();
-}
-
-getInput();
+calculate(cost, coin, transaction);
