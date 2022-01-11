@@ -34,6 +34,14 @@ cost = parseFloat(cost);
 
 const result = calculate(coin, totalTransaction, cost);
 
+if (!result) {
+  return console.log(
+    `==================================================
+        Coin Tidak Cukup Untuk Melakukan Transaksi
+     ==================================================`
+  );
+}
+
 console.log(`
   ======================================
     Coin Yang Diperlukan: [${result.required}]

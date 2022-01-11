@@ -10,7 +10,7 @@ const calculate = (coin, totalTransaction, cost) => {
     coin.reduce((a, b) => a + b) - coin.length * cost - totalTransaction <
     0
   ) {
-    return "Not enough coins";
+    return false;
   }
 
   coin.forEach((e) => {
@@ -25,8 +25,6 @@ const calculate = (coin, totalTransaction, cost) => {
       totalCost += cost;
     }
   });
-
-  if (change < 0);
 
   return {
     required: requiredCoin,

@@ -6,7 +6,8 @@ Package tambahan: "readline-sync".
 ## Jalankan:
 
 1. Clone ke lokal host:  
-   `git clone https://github.com/erul2/erul_test.git`
+   `git clone https://github.com/erul2/erul_test.git`  
+   `cd erul_test`
 2. Install dependencies:  
    `npm install `
 3. Menjalankan program:
@@ -15,4 +16,3 @@ Package tambahan: "readline-sync".
      `npm test`
 
 Jalankan melalui Replit di browser (https://replit.com/@erul2/Test#index.js)
-

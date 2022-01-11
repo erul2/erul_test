@@ -39,7 +39,7 @@ Total Transaction: 20
 cost: 1
 
 Output:
-Required coins: [10,15],
+Required coins: [15,10],
 cost: 2,
 change: 3`, () => {
   expect(calculate([10, 3, 5, 15], 20, 1)).toMatchObject({
@@ -55,6 +55,6 @@ Coin: [10, 5, 7]
 Total Transaction: 22
 Cost : 0.5
 
-Output: "Not enough coins" `, () => {
-  expect(calculate([10, 5, 7], 22, 0.5)).toBe("Not enough coins");
+Output: false`, () => {
+  expect(calculate([10, 5, 7], 22, 0.5)).toBe(false);
 });
