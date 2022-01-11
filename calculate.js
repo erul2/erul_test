@@ -1,5 +1,4 @@
-const calculate = (coin, totalTransaction) => {
-  const cost = 0.5;
+const calculate = (coin, totalTransaction, cost) => {
   let requiredCoin = [];
   let totalCoin = 0;
   let totalCost = 0;
@@ -7,15 +6,27 @@ const calculate = (coin, totalTransaction) => {
 
   coin = coin.sort((a, b) => b - a);
 
+  if (
+    coin.reduce((a, b) => a + b) - coin.length * cost - totalTransaction <
+    0
+  ) {
+    return "Not enough coins";
+  }
+
   coin.forEach((e) => {
-    if (requiredCoin.length == 0 || totalCoin <= totalTransaction) {
+    change = totalCoin - totalTransaction - totalCost;
+    if (
+      requiredCoin.length == 0 ||
+      totalCoin <= totalTransaction ||
+      change < 0
+    ) {
       requiredCoin.push(e);
       totalCoin += e;
       totalCost += cost;
     }
   });
 
-  change = totalCoin - totalTransaction - totalCost;
+  if (change < 0);
 
   return {
     required: requiredCoin,

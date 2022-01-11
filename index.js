@@ -1,7 +1,9 @@
+const calculate = require("./calculate");
+
 const readline = require("readline-sync");
 const sampleCoin = [10, 5, 2, 3, 6, 7];
 const sampletotalTransaction = 23;
-const calculate = require("./calculate");
+const sampleCost = 0.5;
 
 let coin = readline.question(
   `Input Coin (dipisah dengan koma):
@@ -21,7 +23,16 @@ default ${sampletotalTransaction} \n`,
 );
 totalTransaction = parseFloat(totalTransaction);
 
-const result = calculate(coin, totalTransaction);
+let cost = readline.question(
+  `Biaya (per koin):
+default ${sampleCost} \n`,
+  {
+    defaultInput: sampleCost,
+  }
+);
+cost = parseFloat(cost);
+
+const result = calculate(coin, totalTransaction, cost);
 
 console.log(`
   ======================================
